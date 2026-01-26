@@ -1,0 +1,73 @@
+.page-title {
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* Error */
+.error {
+  color: #d32f2f;
+  margin-top: 20px;
+}
+
+/* Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.stat-card .content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Icon */
+.stat-card .icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: #4c3ca2;
+}
+
+/* Text */
+.stat-card p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.stat-card h2,
+.stat-card h3 {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+/* Status colors */
+.stat-card.success .icon {
+  color: #2e7d32;
+}
+
+.stat-card.danger .icon {
+  color: #c62828;
+}
+
+.stat-card.info .icon {
+  color: #1565c0;
+}

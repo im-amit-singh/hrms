@@ -1,0 +1,30 @@
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.employee-card {
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

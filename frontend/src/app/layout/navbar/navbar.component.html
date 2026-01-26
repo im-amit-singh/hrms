@@ -1,0 +1,17 @@
+<mat-toolbar class="admin-navbar" color="primary">
+
+  <button
+    mat-icon-button
+    *ngIf="isMobile"
+    (click)="menuToggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="title">HRMS Admin Panel</span>
+
+  <span class="spacer"></span>
+
+  <!-- Placeholder for future profile -->
+  <mat-icon class="profile-icon">account_circle</mat-icon>
+
+</mat-toolbar>

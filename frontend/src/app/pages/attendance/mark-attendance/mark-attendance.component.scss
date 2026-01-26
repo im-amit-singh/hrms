@@ -1,0 +1,29 @@
+.page-title {
+  margin-bottom: 16px;
+}
+
+.attendance-card {
+  max-width: 500px;
+  padding: 16px;
+}
+
+.attendance-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.error-text {
+  color: #d32f2f;
+  font-size: 13px;
+}

@@ -1,0 +1,42 @@
+<div class="sidebar-wrapper">
+
+  <div class="logo">
+    HRMS
+  </div>
+
+  <ul class="menu">
+    <li
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      (click)="closeSidebar.emit()">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </li>
+
+    <li
+      routerLink="/employees"
+      routerLinkActive="active"
+      (click)="closeSidebar.emit()">
+      <mat-icon>groups</mat-icon>
+      <span>Employees</span>
+    </li>
+
+    <li
+      routerLink="/attendance"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="closeSidebar.emit()">
+      <mat-icon>event_available</mat-icon>
+      <span>Attendance</span>
+    </li>
+
+    <li
+      routerLink="/attendance/mark"
+      routerLinkActive="active"
+      (click)="closeSidebar.emit()">
+      <mat-icon>edit_calendar</mat-icon>
+      <span>Mark Attendance</span>
+    </li>
+  </ul>
+
+</div>

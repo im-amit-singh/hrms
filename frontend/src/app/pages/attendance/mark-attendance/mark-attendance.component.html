@@ -1,0 +1,56 @@
+<h2 class="page-title">Mark Attendance</h2>
+
+<mat-card class="attendance-card">
+
+  <form [formGroup]="attendanceForm" (ngSubmit)="submit()" class="attendance-form">
+
+    <!-- Employee -->
+    <mat-form-field appearance="outline">
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="employee">
+        <mat-option value="">Select employee</mat-option>
+        <mat-option *ngFor="let emp of employees" [value]="emp.id">
+          {{ emp.full_name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Date -->
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Status -->
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="PRESENT">Present</mat-option>
+        <mat-option value="ABSENT">Absent</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Error -->
+    <div *ngIf="error" class="error-text">
+      {{ error }}
+    </div>
+
+    <!-- Submit -->
+    <div class="form-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="attendanceForm.invalid || submitting">
+        {{ submitting ? 'Saving...' : 'Submit' }}
+      </button>
+    </div>
+
+  </form>
+
+</mat-card>

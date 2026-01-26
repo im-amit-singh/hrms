@@ -1,0 +1,48 @@
+<h2 class="page-title">Dashboard</h2>
+
+<!-- Loading -->
+<div *ngIf="loading" class="loading">
+  <mat-spinner diameter="40"></mat-spinner>
+</div>
+
+<!-- Error -->
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<!-- Dashboard Cards -->
+<div *ngIf="summary && !loading" class="dashboard-grid">
+
+  <mat-card class="stat-card">
+    <mat-icon class="icon">groups</mat-icon>
+    <div class="content">
+      <p>Total Employees</p>
+      <h2>{{ summary.total_employees }}</h2>
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card success">
+    <mat-icon class="icon">check_circle</mat-icon>
+    <div class="content">
+      <p>Present Today</p>
+      <h2>{{ summary.present_today }}</h2>
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card danger">
+    <mat-icon class="icon">cancel</mat-icon>
+    <div class="content">
+      <p>Absent Today</p>
+      <h2>{{ summary.absent_today }}</h2>
+    </div>
+  </mat-card>
+
+  <mat-card class="stat-card info">
+    <mat-icon class="icon">calendar_today</mat-icon>
+    <div class="content">
+      <p>Date</p>
+      <h3>{{ summary.date }}</h3>
+    </div>
+  </mat-card>
+
+</div>
