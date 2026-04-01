@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-from pathlib import Path
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='unsafe-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Application definition
 
@@ -48,15 +49,19 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
+    "corsheaders.middleware.CorsMiddleware",
+
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = 'hrms_backend.urls'
 
@@ -82,14 +87,11 @@ WSGI_APPLICATION = 'hrms_backend.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': config("DATABASE_ENGINE"),
-        'NAME': config("DATABASE_NAME"),
-        'USER': config("DATABASE_USER"),
-        'PASSWORD': config("DATABASE_PASSWORD"),
-        'HOST': config("DATABASE_HOST"),
-        'PORT': config("DATABASE_PORT"),
-    }
+    "default": dj_database_url.config(
+        default=f"postgresql://{config('DATABASE_USER')}:{config('DATABASE_PASSWORD')}@{config('DATABASE_HOST')}:{config('DATABASE_PORT')}/{config('DATABASE_NAME')}",
+        conn_max_age=600,
+        ssl_require=not DEBUG
+    )
 }
 
 
@@ -127,14 +129,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 #cors settings
 CORS_ALLOW_HEADERS = ['*']
-ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".railway.app"
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
