@@ -6,12 +6,17 @@
 
 .env
 .coverage
+*.log
 db.sqlite3
 __pycache__
 __pycache__/
+*.py[cod]
+*$py.class
+local_settings.py
 Pipfile.lock
 htmlcov/
 .idea/
+.venv/
 venv/
 /id_rsa
 /id_rsa.pub
