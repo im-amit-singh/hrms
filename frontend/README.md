@@ -1,27 +1,85 @@
-# Frontend
+# HRMS Frontend (Angular)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+The user interface for the Human Resource Management System, built with **Angular 15** and **Angular Material**.
 
-## Development server
+## 🎨 Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **🏢 Dashboard:** Interactive charts and summaries of employee data.
+- **🕒 Attendance Management:** Intuitive interface for marking attendance and viewing logs.
+- **📄 Employee Management:** Forms for adding, editing, and listing employees.
+- **🧩 Component-Based Architecture:** Modular design for layout, components, and services.
+- **💅 Modern Styling:** Integrated with Angular Material and custom SCSS.
 
-## Code scaffolding
+## 📦 Requirements
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Node.js 18.x+**
+- **npm 9.x+**
+- **Angular CLI v15.x**
 
-## Build
+## 🚦 Local Development Setup
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. Install Dependencies
 
-## Running unit tests
+In the `/frontend` directory, run:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install
+```
 
-## Running end-to-end tests
+### 2. Environment Configuration
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Check `/src/environments/environment.ts` and `/src/environments/environment.prod.ts` to configure your API URL. Example:
 
-## Further help
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8000/api'
+};
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 3. Start Development Server
+
+```bash
+npm start
+```
+
+Access the application at `http://localhost:4200`.
+
+---
+
+## 🏗 Project Layout
+
+```text
+src/
+├── app/
+│   ├── layout/       # Admin Layout & Navigation
+│   ├── pages/        # Dashboard, Employee, Attendance views
+│   ├── services/     # API Services (EmployeeService, AttendanceService)
+│   └── models/       # Data Models & Interfaces
+├── assets/           # Icons, images, and static assets
+└── styles.scss       # Global CSS/SCSS
+```
+
+---
+
+## 🛠 Available Scripts
+
+- `npm start`: Runs the development server.
+- `npm run build`: Builds the production-ready bundle.
+- `npm test`: Runs unit tests via Karma.
+- `npm run ng -- lint`: Lints the source code.
+
+---
+
+## 🚀 Deployment
+
+The project is configured for deployment with **WhiteNoise** in the backend, meaning it can be built and served as static files.
+
+To build:
+```bash
+npm run build --prod
+```
+The output will be in the `/dist` folder, which should be served by your backend or static hosting provider.
+
+> [!TIP]
+> Use **Angular Material** components whenever possible to maintain design consistency and accessibility.
